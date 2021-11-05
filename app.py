@@ -41,20 +41,21 @@ def extraer(text):
 
 def calcular():
    text = entrada.get()
+   r = ''
    for p in text.split(' '):
       if p.lower() in operacion.keys():
          try:
-            l = extraer(text)
+            if r == '':
+               l = extraer(text)
             r = operacion[p.lower()](l[0], l[1])
             l.pop(0)
-            l.pop(1)
+            l.pop(0)
             l.insert(0,r)
             if len(l) == 1:
                res.set(r)
+               break
          except:
             res.set('Algo no entendí bien. Lo siento.')
-         finally:
-            break
       elif p.lower() not in operacion.keys():
          res.set('Algo no entendí bien. Lo siento.')
 
